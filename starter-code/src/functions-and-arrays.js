@@ -1,6 +1,17 @@
 // Find the maximum
+function maxOfTwoNumbers (num1, num2) {
+  if (num1 > num2) {
+    return num1;
+  } 
+  else {
+    return num2;
+  }
+}
+
+console.log(maxOfTwoNumbers(5,7));
 
 // Finding Longest Word
+
 var words = [
   'mystery',
   'brother',
@@ -11,13 +22,69 @@ var words = [
   'crackpot'
 ];
 
+
+function findLongestWord(arr) {
+  let word = "";
+  if (arr.length === 0) {
+    return null;
+  } 
+  else {
+    for (i = 0; i < arr.length -1; i++) {  
+      if (arr[i].length > word.length) {
+        word = arr[i];
+      }
+    }
+  }
+  return word;
+}
+
+console.log(findLongestWord(words));
+/*
+function findLongestWord(arr){
+  let word =[];// declare empty array
+    for (i = 0; i < arr.length -1; i++) {
+      if (arr === []) {
+        return null;
+      } else if (arr[i].length > arr[i + 1].length) { 
+        word.pop();
+        word.push(arr[i]);// looping though the array, compare arr[i] with the word in the array. if the word is longer, pop what is in the array and push new word in
+      } 
+    }
+  return word[0]; // returning the last index in that array
+}
+
+console.log(findLongestWord(words));
+*/
+
 // Calculating a Sum
 
 var numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-// Calculate the Average
+function sumArray(arr) {
+  let sum = 0
+  arr.forEach(function(ele) {
+    sum += ele;
+  })
+  return sum;
+  }
 
+console.log(sumArray(numbers));
+
+// Calculate the Average
 var numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+
+function averageNumbers(arr){ 
+  if (arr.length === 0) {
+    return null;
+  } 
+  else {
+      let avg = sumArray(arr) / arr.length; 
+      return avg;
+  }
+}
+
+console.log(averageNumbers(numbersAvg));
+
 
 // Array of Strings
 var wordsArr = [
@@ -32,6 +99,22 @@ var wordsArr = [
   'fuel',
   'palace'
 ];
+
+function averageWordLength(arr) {
+  let wordLength = [];
+  let avg = 0;
+  if (arr.length === 0 ) {
+    return null;
+  } 
+  else {
+    for (i = 0; i < arr.length - 1; i++ ) {
+      wordLength.push(arr[i].length);
+  }
+return averageNumbers(wordLength);
+  }
+}
+
+console.log(averageWordLength(wordsArr));
 
 // Unique Arrays
 var wordsUnique = [
@@ -48,6 +131,18 @@ var wordsUnique = [
   'bring'
 ];
 
+function uniquifyArray(arr) {
+  let newArr = []
+    for (i = 0; i < arr.length - 1; i++) {
+      if (newArr.indexOf(arr[i]) === -1) {
+      newArr.push(arr[i]);
+      } 
+    }
+    return newArr;
+  }
+ 
+console.log(uniquifyArray(wordsUnique));
+
 // Finding Elements
 var wordsFind = [
   'machine',
@@ -59,6 +154,22 @@ var wordsFind = [
   'truth',
   'disobedience'
 ];
+function doesWordExist(word, arr) {
+  for (i=0; i < arr.length - 1; i++) {
+    if (arr.length === 0) {
+      return false;
+    }
+    else if (arr.indexOf(word) !== -1) {
+      return true;
+    } 
+    else {
+      return false;
+    }
+  }
+}
+
+console.log(doesWordExist("baba", wordsFind));
+
 
 // Counting Repetion
 var wordsCount = [
@@ -74,6 +185,23 @@ var wordsCount = [
   'disobedience',
   'matter'
 ];
+
+function howManyTimes(word, arr) {
+  let counter = 0;
+  if (arr.length === 0) {
+    return 0;
+  }
+  else {
+    for (i = 0; i < arr.length - 1; i++) {
+      if (arr[i] === word) {
+        counter += 1
+      }
+    }
+  }
+  return counter;
+}
+
+console.log(howManyTimes("matter", wordsCount));
 // Bonus Quest
 
 var matrix = [
@@ -98,3 +226,31 @@ var matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+//function to find greatest adjacent number in for right
+function greatestProduct(matrix) {
+  var greatProd = 0;
+  for (i = 0; i < matrix.length - 4; i++) {
+    for (j = 0; j < matrix[i].length - 4; j++) {
+      
+      var horizontalProduct = 1;
+
+      for (var k = j; k < (j + 4); k++) {
+        horizontalProduct += matrix[i][k];
+      } 
+      if (horizontalProduct > greatProd) {
+        greatProd = horizontalProduct;
+      }
+      var verticalProduct = 1;
+
+      for (var k = i; k < (i + 4); k++){
+        verticalProduct *= matrix[i][j];
+      } 
+      if (verticalProduct > greatProd) {
+        greatProd = verticalProduct;
+      }
+    }
+  }
+  return greatProd;
+  }
+
+  console.log(greatestProduct(matrix));
